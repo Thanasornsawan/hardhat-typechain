@@ -11,4 +11,4 @@ follow tutorial from [here](https://code.visualstudio.com/docs/editor/debugging)
 - click breakpoint line at any line in testing file
 - Go to "Run and Debug" and click "play" button on debug name "Hardhat test"
   
-![debug](https://github.com/Thanasornsawan/hardhat-typechain/tree/main/images/testDebug.jpg)
+![debug](https://github.com/Thanasornsawan/hardhat-typechain/blob/main/images/testDebug.jpg)
