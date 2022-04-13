@@ -1,4 +1,4 @@
-# this project is testing contract with typechain with ethereum-waffle
+# HARDHAT-TYPECHAIN-ETHEREUM-WAFFLE
 
 ** warning: to avoid any bug during deploy contract, recommend use ethers version "^5.0.31"
 
