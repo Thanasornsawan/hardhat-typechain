@@ -17,7 +17,7 @@ contract Counter {
   }
 
   function countDown() external returns (uint) {
-    require(count > 0,"overflow alert!,not allow to minus 1");
+    require(count > 0,"overflow alert!,not allow to -1");
     uint newCount = count - 1;
     count = newCount;
 
