@@ -8,7 +8,7 @@ contract Counter {
 
   function countUp() external returns (uint) {
     uint max = 2**256-1;
-    require(count < max,"underflow alert!,not allow to +1");
+    require(count < max,"overflow alert!,not allow to +1");
     uint newCount = count + 1;
     count = newCount;
 
@@ -17,7 +17,7 @@ contract Counter {
   }
 
   function countDown() external returns (uint) {
-    require(count > 0,"overflow alert!,not allow to -1");
+    require(count > 0,"underflow alert!,not allow to -1");
     uint newCount = count - 1;
     count = newCount;
 

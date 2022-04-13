@@ -58,19 +58,19 @@ describe("Counter contract", function () {
   });
 
   it("Should count up", async function () {
-      await counter.countUp();
-      let count = await counter.getCount();
+     await counter.countUp();
+      //await expect(counter.countUp()).to.be.revertedWith("overflow alert!,not allow to +1");
+      const count = await counter.getCount();
       expect(count).to.eq(1);
-
-      await counter.countUp();
-      count = await counter.getCount();
-      expect(count).to.eq(2);
+      await expect(counter.countUp()).to.emit(counter, 'CountedTo').withArgs(2);
   });
 
-  it("should count down", async () => {
-    await counter.countDown();
+  it("should revert when count down", async () => {
+    //expect(await counter.countDown()).to.be.reverted;
+    expect(await counter.countDown()).to.be.revertedWith("underflow alert!,not allow to -1");
     const count = await counter.getCount();
     expect(count).to.eq(0);
+    expect(await counter.countDown()).to.emit(counter, 'CountedTo').withArgs(0);
   });
 
 });
