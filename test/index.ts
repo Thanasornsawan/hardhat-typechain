@@ -2,12 +2,14 @@ import { use, expect } from "chai";
 import { deployContract, solidity } from "ethereum-waffle";
 import { ethers } from "hardhat";
 import GreeterArtifact from "../artifacts/contracts/Greeter.sol/Greeter.json";
+import CountArtifact from "../artifacts/contracts/Counter.sol/Counter.json";
 import { Greeter } from "../typechain";
+import { Counter } from "../typechain";
 //import { Greeter, Greeter__factory } from "../typechain";
 
 use(solidity);
 
-describe("Greeter", function () {
+describe("Greeter contract", function () {
 
   let greeter: Greeter;
 
@@ -38,4 +40,37 @@ describe("Greeter", function () {
     await setGreetingTx.wait();
     expect(await greeter.greet()).to.equal(greeting);
   });
+});
+
+describe("Counter contract", function () {
+
+  let counter: Counter;
+
+  beforeEach(async () => {
+    const signer = await ethers.getSigners(); 
+    counter = await deployContract(signer[0],CountArtifact) as Counter;
+    await counter.deployed();
+    const initialCount = await counter.getCount();
+
+    expect(counter.address).to.properAddress;
+    console.log("Counter deploy to address: ", counter.address);
+    expect(initialCount).to.eq(0);
+  });
+
+  it("Should count up", async function () {
+      await counter.countUp();
+      let count = await counter.getCount();
+      expect(count).to.eq(1);
+
+      await counter.countUp();
+      count = await counter.getCount();
+      expect(count).to.eq(2);
+  });
+
+  it("should count down", async () => {
+    await counter.countDown();
+    const count = await counter.getCount();
+    expect(count).to.eq(0);
+  });
+
 });

@@ -4,21 +4,28 @@ pragma solidity ^0.8.0;
 contract Counter {
   uint public count = 0;
 
-  event CountedTo(uint256 number);
+  event CountedTo(uint number);
 
-  function countUp() public returns (uint256) {
-    uint256 newCount = count + 1;
+  function countUp() external returns (uint) {
+    uint max = 2**256-1;
+    require(count < max,"underflow alert!,not allow to +1");
+    uint newCount = count + 1;
     count = newCount;
 
     emit CountedTo(count);
     return count;
   }
 
-  function countDown() public returns (uint256) {
-    uint256 newCount = count - 1;
+  function countDown() external returns (uint) {
+    require(count > 0,"overflow alert!,not allow to minus 1");
+    uint newCount = count - 1;
     count = newCount;
 
     emit CountedTo(count);
     return count;
+  }
+
+  function getCount() external view returns (uint) {
+      return count;
   }
 }
