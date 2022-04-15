@@ -68,7 +68,9 @@ You can view your transaction at https://dashboard.tenderly.co/ploy/typescript/l
 Checking on terderly website
 ![tenderly](https://github.com/Thanasornsawan/hardhat-typechain/blob/main/images/ten.JPG)
 
-### Export contract via tenderly script in deploy/deploy.ts not tenderly-cli
+---------------------------------------------------------------------------------------------------
+
+### Export contract via tenderly script in deploy/deploy.ts on rinkeby network
 **warning**: to deploy via script, you need testnet not localhost network, if you use localhost you may end up with error "hardhat-tenderly: No new contracts have been verified"
 
 ```
