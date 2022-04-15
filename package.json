@@ -1,10 +1,13 @@
 {
-  "name": "erc1155",
+  "name": "hardhat-typescript",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "hardhat test"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat deploy",
+    "node": "hardhat node"
   },
   "author": "",
   "license": "ISC",

@@ -1,10 +1,10 @@
-import { ethers, tenderly } from "hardhat";
+import { ethers } from "hardhat";
 //import {HardhatRuntimeEnvironment} from 'hardhat/types';
 
 async function main() {
 
   const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  const greeter = await Greeter.deploy("Hello, World!");
   await greeter.deployed();
 
   console.log("Greeter deployed to: ", greeter.address);
@@ -17,15 +17,6 @@ async function main() {
   console.log("Counter deployed to: ", counter.address);
   console.log("Counter transaction hash: ", counter.deployTransaction.hash);
 
-  let artifact = await tenderly.persistArtifacts({
-    name: "Greeter",
-    address: greeter.address
-  });
-
-  let verification = await tenderly.verify({
-    name: "Greeter",
-    address: greeter.address,
-  });
 }
 
 // We recommend this pattern to be able to use async/await everywhere

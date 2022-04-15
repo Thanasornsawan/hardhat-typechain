@@ -7,6 +7,7 @@ import "hardhat-gas-reporter";
 import "solidity-coverage";
 import "@tenderly/hardhat-tenderly"
 import 'hardhat-deploy';
+const { Confirm } = require("enquirer")
 
 dotenv.config();
 
@@ -34,6 +35,11 @@ const config: HardhatUserConfig = {
       },
     ],
   },
+  namedAccounts: {
+    deployer: {
+        default: 0, // here this will by default take the first account as deployer
+    },
+  },
   networks: {
     rinkeby: {
       url: process.env.RINKEBY_URL || "",
@@ -56,6 +62,30 @@ const config: HardhatUserConfig = {
     project: process.env.TENDERLY_PROJECT as string,
     username: process.env.TENDERLY_USERNAME as string,
   },
+  paths: {
+    cache: "./generated/cache",
+    artifacts: "./generated/artifacts",
+    deployments: "./generated/deployments",
+  },
+  typechain: {
+    outDir: "./typechain",
+  },
 };
+
+task("deploy")
+    //   .addOptionalParam("network", "Network")
+    .setAction(async (taskArgs, hre, runSuper) => {
+        const { network } = taskArgs
+        console.log(`Deploying...`)
+
+        const accounts = await hre.ethers.getSigners()
+
+        const prompt = new Confirm({
+            name: "question",
+            message: `Confirm to deploy with ${accounts[0].address}`,
+        })
+
+            ; (await prompt.run()) && (await runSuper(taskArgs))
+    })
 
 export default config;
