@@ -22,7 +22,7 @@ I use plugin from "@tenderly/hardhat-tenderly" and "hardhat-deploy" and install 
 - Use command `tenderly login`
 - create folder deploy and deploy.ts under that folder
 
-First termianl:
+First terminal:
 ```
 npx hardhat node
 ```
