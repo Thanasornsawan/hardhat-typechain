@@ -71,7 +71,7 @@ Checking on terderly website
 ---------------------------------------------------------------------------------------------------
 
 ### Export contract via tenderly script in deploy/deploy.ts on rinkeby network
-**warning**: to deploy via script, you need testnet not localhost network, if you use localhost you may end up with error "hardhat-tenderly: No new contracts have been verified"
+**warning**: to deploy via script, you need **testnet or mainnet** not **localhost** network, if you use localhost you may end up with error "hardhat-tenderly: No new contracts have been verified"
 
 ```
 ploy@DESKTOP-J2I6GJ1:/mnt/c/Users/Ploy/Documents/hardhat-typescript$ npx hardhat deploy --network rinkeby
